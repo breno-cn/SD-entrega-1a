@@ -31,7 +31,7 @@ while True:
         value = input('Digite o valor: ')
         keyLength = len(key)
 
-        message = bytes(option) + keyLength.to_bytes(2, 'big') + key.encode() + value.encode()
+        message = bytes(option) + keyLength.to_bytes(1, 'big') + key.encode() + value.encode()
         print(message)
 
         s.send(message)
@@ -41,7 +41,7 @@ while True:
         key = input('Digite a chave: ')
         keyLength = len(key)
 
-        message = bytes(option) + keyLength.to_bytes(2, 'big') + key.encode()
+        message = bytes(option) + keyLength.to_bytes(1, 'big') + key.encode()
         print(message)
 
         s.send(message)
@@ -52,7 +52,7 @@ while True:
         value = input('Digite o valor: ')
         keyLength = len(key)
 
-        message = bytes(option) + keyLength.to_bytes(2, 'big') + key.encode() + value.encode()
+        message = bytes(option) + keyLength.to_bytes(1, 'big') + key.encode() + value.encode()
         print(message)
 
         s.send(message)
@@ -62,14 +62,14 @@ while True:
         key = input('Digite a chave: ')
         keyLength = len(key)
 
-        message = bytes(option) + keyLength.to_bytes(2, 'big') + key.encode()
+        message = bytes(option) + keyLength.to_bytes(1, 'big') + key.encode()
         print(message)
 
         s.send(message)
         getResponse(s)
 
     if option == 5:
-        message = (0).to_bytes(2, 'big')
+        message = (0).to_bytes(1, 'big')
         s.send(message)
         s.close()
         break
