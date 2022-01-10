@@ -34,7 +34,7 @@ while True:
         message = bytes(option) + keyLength.to_bytes(2, 'big') + key.encode() + value.encode()
         print(message)
 
-        s.send()
+        s.send(message)
         getResponse(s)
 
     if option == 2:
@@ -44,7 +44,7 @@ while True:
         message = bytes(option) + keyLength.to_bytes(2, 'big') + key.encode()
         print(message)
 
-        s.send()
+        s.send(message)
         getResponse(s)
 
     if option == 3:
@@ -55,7 +55,7 @@ while True:
         message = bytes(option) + keyLength.to_bytes(2, 'big') + key.encode() + value.encode()
         print(message)
 
-        s.send()
+        s.send(message)
         getResponse()
 
     if option == 4:
@@ -65,8 +65,11 @@ while True:
         message = bytes(option) + keyLength.to_bytes(2, 'big') + key.encode()
         print(message)
 
-        s.send()
+        s.send(message)
         getResponse(s)
 
     if option == 5:
+        message = (0).to_bytes(2, 'big')
+        s.send(message)
+        s.close()
         break
