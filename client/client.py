@@ -1,11 +1,26 @@
 import socket
 
+SUCCESS = 4
+ERROR = 5
+
 s = socket.socket()
 host = socket.gethostname()
 port = 12345
 
 print('Conectando-se ao servidor...')
 s.connect((host, port))
+
+def getResponse(s):
+    print('Esperando resposta...')
+
+    resp = int.from_bytes(s.recv(1024), byteorder='big', signed=True)
+
+    if resp == 4:
+        print('Sucesso na operação!')
+        return
+    
+    if resp == 5:
+        print('Ocorreu algum erro na sua operação!')
 
 while True:
     print('O que você deseja fazer?')
@@ -19,12 +34,18 @@ while True:
         message = bytes(option) + bytes(keyLength) + key.encode() + value.encode()
         print(message)
 
+        s.send()
+        getResponse(s)
+
     if option == 2:
         key = input('Digite a chave: ')
         keyLength = len(key)
 
         message = bytes(option) + bytes(keyLength) + key.encode()
         print(message)
+
+        s.send()
+        getResponse(s)
 
     if option == 3:
         key = input('Digite a chave: ')
@@ -34,12 +55,18 @@ while True:
         message = bytes(option) + bytes(keyLength) + key.encode() + value.encode()
         print(message)
 
+        s.send()
+        getResponse()
+
     if option == 4:
         key = input('Digite a chave: ')
         keyLength = len(key)
 
         message = bytes(option) + bytes(keyLength) + key.encode()
         print(message)
+
+        s.send()
+        getResponse(s)
 
     if option == 5:
         break
