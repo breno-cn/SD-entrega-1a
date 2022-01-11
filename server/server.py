@@ -1,4 +1,4 @@
-import Hashtable 
+from Hashtable import Hashtable
 import socket
 
 hashtable = Hashtable()
@@ -7,18 +7,25 @@ nServer = 1
 def switch(data):
     global nServer
     case = data[0]
-    if case == "0":
+    print(case)
+    if case == 0:
         nServer = 0
+        print('a')
         return 4
-    elif case == "1":
+    elif case == 1:
+        print('b')
         return createhash(data[1:])
-    elif case == "2":
+    elif case == 2:
+        print('c')
         return readhash(data[1:])
-    elif case == "3":
+    elif case == 3:
+        print('d')
         return updatehash(data[1:])
-    elif case == "4":
+    elif case == 4:
+        print('d')
         return deletehash(data[1:])
     else:
+        print('e')
         return 5
 
 def createhash(data):
@@ -58,7 +65,8 @@ def server():
         print('Conectado')
         while nServer:
             print('Esperando mensagem')
-            data = c.recv(1024).decode()
+            data = c.recv(1024)
+            print(f'data: {data}')
             retorno = switch(data)
 
             if(retorno == 4):

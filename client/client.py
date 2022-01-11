@@ -14,6 +14,7 @@ def getResponse(s):
     print('Esperando resposta...')
 
     resp = int.from_bytes(s.recv(1024), byteorder='big', signed=True)
+    print(f'resposta: {resp}')
 
     if resp == 4:
         print('Sucesso na operação!')
