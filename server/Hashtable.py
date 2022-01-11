@@ -1,3 +1,4 @@
+SUCESSO = 4
 ERRO = 5
 
 class Hashtable:
@@ -11,6 +12,7 @@ class Hashtable:
             return ERRO
 
         self.data[key] = value
+        return SUCESSO
 
     def read(self, key: str) -> str:
         if key not in self.data:
@@ -23,9 +25,11 @@ class Hashtable:
             return ERRO
 
         self.data[key] = value
+        return SUCESSO
 
     def delete(self, key: str, value: str) -> None:
         if key not in self.data:
             return ERRO
 
         self.data[key] = None
+        return SUCESSO
