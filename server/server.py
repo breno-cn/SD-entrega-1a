@@ -1,5 +1,6 @@
 from Hashtable import Hashtable
 import socket
+from _thread import *
 
 hashtable = Hashtable()
 nServer = 1
@@ -54,6 +55,24 @@ def deletehash(data):
     value = data[KeySize+1:].decode()
     return hashtable.delete(key, value)
 
+def threaded_client(c):
+    while nServer:
+        print('Esperando mensagem')
+        data = c.recv(1024)
+        print(f'data: {data}')
+        retorno = switch(data)
+
+        if(retorno == 4):
+            message = bytes((4).to_bytes(1,'big'))
+            c.send(message)
+        elif(retorno == 5):
+            message = bytes((5).to_bytes(1,'big'))
+            c.send(message)
+        elif(type(retorno) == str):
+            message = bytes((4).to_bytes(1,'big')) + retorno.encode() 
+            c.send(message)
+
+
 def server():
     s = socket.socket()
     host = socket.gethostname()
@@ -66,21 +85,7 @@ def server():
         print('Esperando conexão...')
         c, addr = s.accept()
         print('Conectado')
-        while nServer:
-            print('Esperando mensagem')
-            data = c.recv(1024)
-            print(f'data: {data}')
-            retorno = switch(data)
-
-            if(retorno == 4):
-                message = bytes((4).to_bytes(1,'big'))
-                c.send(message)
-            elif(retorno == 5):
-                message = bytes((5).to_bytes(1,'big'))
-                c.send(message)
-            elif(type(retorno) == str):
-                message = bytes((4).to_bytes(1,'big')) + retorno.encode() 
-                c.send(message)
+        start_new_thread(threaded_client, (c, ))
 
 
 server()
