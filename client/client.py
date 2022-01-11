@@ -19,10 +19,11 @@ def getResponse(s):
 
     if status == 4:
         print('Sucesso na operação!')
-        return resp
+        return status, resp
     
     if status == 5:
         print('Ocorreu algum erro na sua operação!')
+        return status, ''
 
 while True:
     print('O que você deseja fazer?')
@@ -47,8 +48,9 @@ while True:
         print(message)
 
         s.send(message)
-        resp = getResponse(s)
-        print(f'resposta READ: {resp[1:]}')
+        status, resp = getResponse(s)
+        if status == 4:
+            print(f'resposta READ: {resp[1:]}')
 
     if option == 3:
         key = input('Digite a chave: ')

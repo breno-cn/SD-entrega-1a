@@ -33,5 +33,6 @@ class Hashtable:
         if key not in self.data:
             return ERRO
 
-        self.data[key] = None
+        # self.data[key] = None
+        del self.data[key]
         return SUCESSO
