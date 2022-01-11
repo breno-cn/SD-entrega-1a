@@ -11,18 +11,13 @@ print('Conectando-se ao servidor...')
 s.connect((host, port))
 
 def getResponse(s):
-    print('Esperando resposta...')
-
     resp = s.recv(1024)
     status = resp[0]
-    print(f'resposta: {resp}')
 
     if status == 4:
-        print('Sucesso na operação!')
         return status, resp
     
     if status == 5:
-        print('Ocorreu algum erro na sua operação!')
         return status, ''
 
 while True:
