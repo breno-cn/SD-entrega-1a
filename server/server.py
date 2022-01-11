@@ -30,25 +30,28 @@ def switch(data):
 
 def createhash(data):
     KeySize = int(data[0])
-    key = data[1:KeySize+1]
-    value = data[KeySize+1:]
+    key = data[1:KeySize+1].decode()
+    value = data[KeySize+1:].decode()
+
+    print(f'key: {key}, keySize: {KeySize}, value: {value}')
+
     return hashtable.create(key, value)
 
 def readhash(data):
     KeySize = int(data[0])
-    key = data[1:KeySize+1]
+    key = data[1:KeySize+1].decode()
     return hashtable.read(key)
 
 def updatehash(data):
     KeySize = int(data[0])
-    key = data[1:KeySize+1]
-    value = data[KeySize+1:]
+    key = data[1:KeySize+1].decode()
+    value = data[KeySize+1:].decode()
     return hashtable.update(key, value)
 
 def deletehash(data):
     KeySize = int(data[0])
-    key = data[1:KeySize+1]
-    value = data[KeySize+1:]
+    key = data[1:KeySize+1].decode()
+    value = data[KeySize+1:].decode()
     return hashtable.delete(key, value)
 
 def server():

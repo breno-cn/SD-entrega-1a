@@ -13,14 +13,15 @@ s.connect((host, port))
 def getResponse(s):
     print('Esperando resposta...')
 
-    resp = int.from_bytes(s.recv(1024), byteorder='big', signed=True)
+    resp = s.recv(1024)
+    status = resp[0]
     print(f'resposta: {resp}')
 
-    if resp == 4:
+    if status == 4:
         print('Sucesso na operação!')
-        return
+        return resp
     
-    if resp == 5:
+    if status == 5:
         print('Ocorreu algum erro na sua operação!')
 
 while True:
@@ -46,7 +47,8 @@ while True:
         print(message)
 
         s.send(message)
-        getResponse(s)
+        resp = getResponse(s)
+        print(f'resposta READ: {resp[1:]}')
 
     if option == 3:
         key = input('Digite a chave: ')
@@ -57,7 +59,7 @@ while True:
         print(message)
 
         s.send(message)
-        getResponse()
+        getResponse(s)
 
     if option == 4:
         key = input('Digite a chave: ')

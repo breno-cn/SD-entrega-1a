@@ -18,6 +18,8 @@ class Hashtable:
         if key not in self.data:
             return ERRO
 
+        print(f'READ: {self.data[key]}')
+
         return self.data[key]
 
     def update(self, key: str, value: str) -> None:
