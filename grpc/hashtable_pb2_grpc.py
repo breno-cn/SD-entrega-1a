@@ -14,9 +14,24 @@ class HashtableStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.create = channel.unary_unary(
+                '/Hashtable/create',
+                request_serializer=hashtable__pb2.CreateRequest.SerializeToString,
+                response_deserializer=hashtable__pb2.Response.FromString,
+                )
         self.read = channel.unary_unary(
                 '/Hashtable/read',
                 request_serializer=hashtable__pb2.ReadRequest.SerializeToString,
+                response_deserializer=hashtable__pb2.Response.FromString,
+                )
+        self.update = channel.unary_unary(
+                '/Hashtable/update',
+                request_serializer=hashtable__pb2.UpdateRequest.SerializeToString,
+                response_deserializer=hashtable__pb2.Response.FromString,
+                )
+        self.delete = channel.unary_unary(
+                '/Hashtable/delete',
+                request_serializer=hashtable__pb2.DeleteRequest.SerializeToString,
                 response_deserializer=hashtable__pb2.Response.FromString,
                 )
 
@@ -24,7 +39,25 @@ class HashtableStub(object):
 class HashtableServicer(object):
     """Missing associated documentation comment in .proto file."""
 
+    def create(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def read(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def delete(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -33,9 +66,24 @@ class HashtableServicer(object):
 
 def add_HashtableServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'create': grpc.unary_unary_rpc_method_handler(
+                    servicer.create,
+                    request_deserializer=hashtable__pb2.CreateRequest.FromString,
+                    response_serializer=hashtable__pb2.Response.SerializeToString,
+            ),
             'read': grpc.unary_unary_rpc_method_handler(
                     servicer.read,
                     request_deserializer=hashtable__pb2.ReadRequest.FromString,
+                    response_serializer=hashtable__pb2.Response.SerializeToString,
+            ),
+            'update': grpc.unary_unary_rpc_method_handler(
+                    servicer.update,
+                    request_deserializer=hashtable__pb2.UpdateRequest.FromString,
+                    response_serializer=hashtable__pb2.Response.SerializeToString,
+            ),
+            'delete': grpc.unary_unary_rpc_method_handler(
+                    servicer.delete,
+                    request_deserializer=hashtable__pb2.DeleteRequest.FromString,
                     response_serializer=hashtable__pb2.Response.SerializeToString,
             ),
     }
@@ -47,6 +95,23 @@ def add_HashtableServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class Hashtable(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def create(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Hashtable/create',
+            hashtable__pb2.CreateRequest.SerializeToString,
+            hashtable__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def read(request,
@@ -61,6 +126,40 @@ class Hashtable(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Hashtable/read',
             hashtable__pb2.ReadRequest.SerializeToString,
+            hashtable__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def update(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Hashtable/update',
+            hashtable__pb2.UpdateRequest.SerializeToString,
+            hashtable__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def delete(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Hashtable/delete',
+            hashtable__pb2.DeleteRequest.SerializeToString,
             hashtable__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
