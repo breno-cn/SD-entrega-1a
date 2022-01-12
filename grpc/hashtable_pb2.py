@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0fhashtable.proto\")\n\x08Response\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\t\"+\n\rCreateRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"\x1a\n\x0bReadRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\"+\n\rUpdateRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"\x1c\n\rDeleteRequest\x12\x0b\n\x03key\x18\x01 \x01(\t2\x9b\x01\n\tHashtable\x12#\n\x06\x63reate\x12\x0e.CreateRequest\x1a\t.Response\x12\x1f\n\x04read\x12\x0c.ReadRequest\x1a\t.Response\x12#\n\x06update\x12\x0e.UpdateRequest\x1a\t.Response\x12#\n\x06\x64\x65lete\x12\x0e.DeleteRequest\x1a\t.Responseb\x06proto3'
+  serialized_pb=b'\n\x0fhashtable.proto\")\n\x08Response\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\t\"+\n\rCreateRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\")\n\x0bReadRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"+\n\rUpdateRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"\x1c\n\rDeleteRequest\x12\x0b\n\x03key\x18\x01 \x01(\t2\x9b\x01\n\tHashtable\x12#\n\x06\x63reate\x12\x0e.CreateRequest\x1a\t.Response\x12\x1f\n\x04read\x12\x0c.ReadRequest\x1a\t.Response\x12#\n\x06update\x12\x0e.UpdateRequest\x1a\t.Response\x12#\n\x06\x64\x65lete\x12\x0e.DeleteRequest\x1a\t.Responseb\x06proto3'
 )
 
 
@@ -118,6 +118,13 @@ _READREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='ReadRequest.value', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -131,7 +138,7 @@ _READREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=107,
-  serialized_end=133,
+  serialized_end=148,
 )
 
 
@@ -169,8 +176,8 @@ _UPDATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=135,
-  serialized_end=178,
+  serialized_start=150,
+  serialized_end=193,
 )
 
 
@@ -201,8 +208,8 @@ _DELETEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=180,
-  serialized_end=208,
+  serialized_start=195,
+  serialized_end=223,
 )
 
 DESCRIPTOR.message_types_by_name['Response'] = _RESPONSE
@@ -256,8 +263,8 @@ _HASHTABLE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=211,
-  serialized_end=366,
+  serialized_start=226,
+  serialized_end=381,
   methods=[
   _descriptor.MethodDescriptor(
     name='create',
