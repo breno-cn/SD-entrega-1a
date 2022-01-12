@@ -5,7 +5,6 @@ import hashtable_pb2
 from Hashtable import Hashtable
 
 hashtable = Hashtable()
-hashtable.create('nome', 'Breno')
 
 class Server(hashtable_pb2_grpc.HashtableServicer):
 
