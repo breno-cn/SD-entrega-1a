@@ -14,7 +14,7 @@ with grpc.insecure_channel('localhost:50051') as channel:
             key = input('Digite a chave: ')
             value = input('Digite o valor: ')
 
-            status = stub.read(CreateRequest(key=key, value=value))
+            status = stub.create(CreateRequest(key=key, value=value))
             print(str(status))
 
 
@@ -22,7 +22,7 @@ with grpc.insecure_channel('localhost:50051') as channel:
             key = input('Digite a chave: ')
             
             resp = stub.read(ReadRequest(key=key))
-            print(str(status))
+            print(str(resp))
 
 
         if option == 3:

@@ -9,8 +9,10 @@ class Hashtable:
 
     def create(self, key: str, value: str) -> None:
         if key in self.data:
+            print('a')
             return ERRO
 
+        print('b')
         self.data[key] = value
         return SUCESSO
 
