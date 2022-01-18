@@ -9,18 +9,14 @@ class Hashtable:
 
     def create(self, key: str, value: str) -> None:
         if key in self.data:
-            print('a')
             return ERRO
 
-        print('b')
         self.data[key] = value
         return SUCESSO
 
     def read(self, key: str) -> str:
         if key not in self.data:
             return ERRO
-
-        print(f'READ: {self.data[key]}')
 
         return self.data[key]
 
