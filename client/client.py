@@ -21,7 +21,7 @@ def getResponse(s):
         return status, ''
 
 while True:
-    print('O que você deseja fazer?')
+    print('O que voce deseja fazer?')
     option = int(input('1 -> CREATE\n2 -> READ\n3 -> UPDATE\n4 -> DELETE\n5 -> ENCERRAR\n'))
 
     if option == 1:
