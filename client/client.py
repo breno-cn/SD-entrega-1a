@@ -30,22 +30,23 @@ while True:
         keyLength = len(key)
 
         message = option.to_bytes(1, 'big') + keyLength.to_bytes(1, 'big') + key.encode() + value.encode()
-        print(message)
 
         s.send(message)
-        getResponse(s)
+        status, resp = getResponse(s)
+        print(status)
 
     if option == 2:
         key = input('Digite a chave: ')
         keyLength = len(key)
 
         message = option.to_bytes(1, 'big') + keyLength.to_bytes(1, 'big') + key.encode()
-        print(message)
 
         s.send(message)
         status, resp = getResponse(s)
         if status == 4:
             print(f'resposta READ: {resp[1:]}')
+        else:
+            print(f'status: {status}')
 
     if option == 3:
         key = input('Digite a chave: ')
@@ -53,20 +54,20 @@ while True:
         keyLength = len(key)
 
         message = option.to_bytes(1, 'big') + keyLength.to_bytes(1, 'big') + key.encode() + value.encode()
-        print(message)
 
         s.send(message)
-        getResponse(s)
+        status, resp = getResponse(s)
+        print(status)
 
     if option == 4:
         key = input('Digite a chave: ')
         keyLength = len(key)
 
         message = option.to_bytes(1, 'big') + keyLength.to_bytes(1, 'big') + key.encode()
-        print(message)
 
         s.send(message)
-        getResponse(s)
+        status, resp = getResponse(s)
+        print(status)
 
     if option == 5:
         message = (0).to_bytes(1, 'big')
