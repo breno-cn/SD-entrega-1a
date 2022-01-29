@@ -2,6 +2,10 @@
 
 ## Instruções
 
+### Dotenv
+
+Esse projeto utiliza a biblioteca dotenv do python, que pode ser instalada por `sudo pip install python-dotenv`, ou por `sudo pip install -r requirements.txt`
+
 ### Servidor
 
 Para executar o projeto, primeiro será necessário criar na raiz do repositório um arquivo de ambiente `.env`
