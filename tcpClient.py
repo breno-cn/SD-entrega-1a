@@ -1,7 +1,5 @@
 import socket
-
-SUCCESS = 4
-ERROR = 5
+from server.constants import SUCCESS, ERROR
 
 s = socket.socket()
 host = socket.gethostname()
@@ -14,10 +12,10 @@ def getResponse(s):
     resp = s.recv(1024)
     status = resp[0]
 
-    if status == 4:
+    if status == SUCCESS:
         return status, resp
     
-    if status == 5:
+    if status == ERROR:
         return status, ''
 
 while True:
@@ -43,7 +41,7 @@ while True:
 
         s.send(message)
         status, resp = getResponse(s)
-        if status == 4:
+        if status == SUCCESS:
             print(f'resposta READ: {resp[1:]}')
         else:
             print(f'status: {status}')
