@@ -1,9 +1,12 @@
 import socket
-from server.constants import SUCCESS, ERROR
+from constants import SUCCESS, ERROR
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 s = socket.socket()
 host = socket.gethostname()
-port = 12345
+port = int(os.getenv('TCP_SERVER_PORT'))
 
 print('Conectando-se ao servidor...')
 s.connect((host, port))

@@ -3,6 +3,8 @@ import socket
 from _thread import *
 
 from constants import *
+from dotenv import load_dotenv
+import os
 
 # hashtable = Hashtable()
 # nServer = 1
@@ -74,9 +76,11 @@ class TcpServer:
 
 
     def serve(self):
+        load_dotenv()
+
         s = socket.socket()
         host = socket.gethostname()
-        port =  12345
+        port =  int(os.getenv('TCP_SERVER_PORT'))
         s.bind((host, port))
 
         s.listen(5)

@@ -1,9 +1,14 @@
 from hashtable_pb2_grpc import *
 from hashtable_pb2 import *
 import grpc
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+port = os.getenv('GRPC_SERVER_PORT')
+address = f'localhost:{port}'
 
-with grpc.insecure_channel('localhost:50051') as channel:
+with grpc.insecure_channel(address) as channel:
     stub = HashtableStub(channel)
 
     while True:

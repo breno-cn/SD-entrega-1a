@@ -1,10 +1,12 @@
 import grpc
+import os
 
 from concurrent import futures
 from hashtable_pb2 import *
 from hashtable_pb2_grpc import *
 from Hashtable import Hashtable
 from constants import *
+from dotenv import load_dotenv
 
 class GrpcServer(HashtableServicer):
 
@@ -46,12 +48,11 @@ class GrpcServer(HashtableServicer):
 
         return Response(status=status)
 
-
     def serve(self):
+        load_dotenv()
         server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
         add_HashtableServicer_to_server(self, server)
-        server.add_insecure_port('[::]:50051')
+        port = int(os.getenv('GRPC_SERVER_PORT'))
+        server.add_insecure_port(f'[::]:{port}')
         server.start()
         server.wait_for_termination()
-
-# serve()
