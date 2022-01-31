@@ -1,11 +1,12 @@
 import socket
+from constants import SUCCESS, ERROR
+from dotenv import load_dotenv
+import os
 
-SUCCESS = 4
-ERROR = 5
-
+load_dotenv()
 s = socket.socket()
 host = socket.gethostname()
-port = 12345
+port = int(os.getenv('TCP_SERVER_PORT'))
 
 print('Conectando-se ao servidor...')
 s.connect((host, port))
@@ -14,10 +15,10 @@ def getResponse(s):
     resp = s.recv(1024)
     status = resp[0]
 
-    if status == 4:
+    if status == SUCCESS:
         return status, resp
     
-    if status == 5:
+    if status == ERROR:
         return status, ''
 
 while True:
@@ -43,7 +44,7 @@ while True:
 
         s.send(message)
         status, resp = getResponse(s)
-        if status == 4:
+        if status == SUCCESS:
             print(f'resposta READ: {resp[1:]}')
         else:
             print(f'status: {status}')
